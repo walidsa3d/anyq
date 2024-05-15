@@ -8,7 +8,7 @@ pipeline {
     }
      triggers {
         // Trigger the pipeline whenever a code change is pushed to the Git repository
-        scm '*/5 * * * *' // Polls Git every 5 minutes
+        cron '*/5 * * * *' // Polls Git every 5 minutes
      }
     stages {
         stage('Checkout') {
