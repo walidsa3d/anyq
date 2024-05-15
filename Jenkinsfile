@@ -16,6 +16,7 @@ pipeline {
                 // Checkout the code from the Git repository
                 git 'git@github.com:walidsa3d/anyq.git'
             }
+        }
         stage('Build') {
             steps {
                 sh 'pip install poetry'
@@ -33,7 +34,6 @@ pipeline {
             }
         }
     }
-}
 post {
         always {
            echo 'Finished'
