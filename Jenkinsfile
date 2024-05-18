@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from the Git repository
-                git 'git@github.com:walidsa3d/anyq.git'
+                git 'https://github.com/walidsa3d/anyq.git'
             }
         }
         stage('Build') {
