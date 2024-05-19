@@ -1,6 +1,7 @@
 pipeline {
     agent {
         docker { image 'python:3.12' }
+        label 'docker'
     }
      environment {
         HELLO_WORLD = 'true'
