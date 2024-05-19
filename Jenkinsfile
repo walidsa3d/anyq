@@ -1,7 +1,6 @@
 pipeline {
     agent {
         docker { image 'python:3.12' }
-        label 'docker'
     }
      environment {
         HELLO_WORLD = 'true'
@@ -16,7 +15,7 @@ pipeline {
             steps {
                 // Checkout the code from the Git repository
                 git url:'https://github.com/walidsa3d/anyq.git',
-                    branch: 'main'
+                branch: 'main'
             }
         }
         stage('Build') {
