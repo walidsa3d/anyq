@@ -1,15 +1,13 @@
 pipeline {
-    agent {
-        docker { image 'python:3.12' }
-    }
+    agent docker
      environment {
         HELLO_WORLD = 'true'
         DB_ENGINE = 'sqlite'
     }
-     triggers {
-        // Trigger the pipeline whenever a code change is pushed to the Git repository
-        cron '*/5 * * * *' // Polls Git every 5 minutes
-     }
+    //  triggers {
+    //     // Trigger the pipeline whenever a code change is pushed to the Git repository
+    //     cron '*/5 * * * *' // Polls Git every 5 minutes
+    //  }
     stages {
         stage('Checkout') {
             steps {
