@@ -12,11 +12,11 @@ class KafkaQueue:
 
     def _init(self):
         self.conf = {}       
-        self.conf["bootstrap.servers"] = self.kafka_url
+        self.conf["bootstrap.servers"] = [self.kafka_url]
         self.producer = Producer(self.conf)
         self.conf["group.id"] = self.group_id
         self.consumer = Consumer(self.conf)
-        self.consumer.subscribe([self.topic])
+        #self.consumer.subscribe([self.topic])
 
     def put(self, msg):
         msg = json.dumps(msg)                                                                                                                              
@@ -24,7 +24,7 @@ class KafkaQueue:
         self.producer.flush()
 
     def get(self):
-        msg = self.consumer.poll(10.0)
+        msg = self.consumer.poll(1.0)
         msg = json.loads(msg.value())
         return msg
 

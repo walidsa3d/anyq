@@ -3,7 +3,7 @@ from testcontainers.rabbitmq import RabbitMqContainer
 import pytest
 
 
-@pytest.fixture(scope="module",autouse=False)
+@pytest.fixture(scope="module")
 def setup():
     rabbit = RabbitMqContainer(username="guest",password="guest",port=5672)
     rabbit.start()
@@ -17,3 +17,12 @@ def test_put(setup):
     rq = RabbitQueue(host=host,port=port, qname="first")
     rq.put(msg)
     assert rq.get() == msg
+
+def test_qsize(setup):
+    msg = {"msg":"hello world"}
+    host = setup.get_container_host_ip()
+    port = setup.get_exposed_port(port=5672)
+    rq = RabbitQueue(host=host,port=port, qname="first")
+    rq.put(msg)
+    rq.put(msg)
+    assert rq.qsize() == 2
