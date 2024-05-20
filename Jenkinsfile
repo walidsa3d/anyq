@@ -1,5 +1,5 @@
 pipeline {
-    agent docker
+    agent {docker 'python:3-bookworm'}
      environment {
         HELLO_WORLD = 'true'
         DB_ENGINE = 'sqlite'
